@@ -1,0 +1,213 @@
+(async function () {
+  const grid = document.getElementById('gallery-grid');
+  if (!grid) return;
+
+  const SLIDE_MS = 5000;
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function safeHttpsUrl(value) {
+    try {
+      const url = new URL(value);
+      return url.protocol === 'https:' ? url.href : null;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function safeImagePath(value) {
+    return typeof value === 'string' && /^\/?assets\/[\w\-./ ]+$/.test(value) && !value.includes('..')
+      ? value.replace(/^\//, '')
+      : null;
+  }
+
+  function el(tag, className, text) {
+    const node = document.createElement(tag);
+    if (className) node.className = className;
+    if (text) node.textContent = text;
+    return node;
+  }
+
+  function button(className, label, text) {
+    const b = el('button', className, text);
+    b.type = 'button';
+    b.setAttribute('aria-label', label);
+    return b;
+  }
+
+  function collectImages(item) {
+    const list = [{ src: item.image, alt: item.image_alt }];
+    if (Array.isArray(item.more_images)) {
+      for (const extra of item.more_images) list.push({ src: extra && extra.image, alt: extra && extra.alt });
+    }
+    return list
+      .map((entry) => ({ src: safeImagePath(entry.src), alt: entry.alt || item.title }))
+      .filter((entry) => entry.src);
+  }
+
+  function buildSlider(item, images) {
+    const wrap = el('div', 'gallery-image');
+
+    const track = el('div', 'gallery-track');
+    images.forEach((image, index) => {
+      const slide = el('div', 'gallery-slide');
+      slide.setAttribute('role', 'group');
+      slide.setAttribute('aria-roledescription', 'Bild');
+      slide.setAttribute('aria-label', `${index + 1} von ${images.length}`);
+      const img = document.createElement('img');
+      img.src = image.src;
+      img.alt = image.alt;
+      img.loading = 'lazy';
+      slide.appendChild(img);
+      track.appendChild(slide);
+    });
+    wrap.appendChild(track);
+
+    if (images.length < 2) return wrap;
+
+    wrap.setAttribute('role', 'group');
+    wrap.setAttribute('aria-roledescription', 'Bildergalerie');
+    wrap.setAttribute('aria-label', item.title);
+
+    const prev = button('gallery-arrow gallery-prev', 'Vorheriges Bild', '‹');
+    const next = button('gallery-arrow gallery-next', 'Nächstes Bild', '›');
+    const pause = button('gallery-pause', 'Automatischen Bildwechsel pausieren');
+    const dots = el('div', 'gallery-dots');
+    const dotButtons = images.map((_, index) => {
+      const dot = button('gallery-dot', `Bild ${index + 1} anzeigen`);
+      dot.addEventListener('click', () => goTo(index, true));
+      dots.appendChild(dot);
+      return dot;
+    });
+    wrap.append(prev, next, pause, dots);
+
+    let current = 0;
+    let timer = null;
+    let userPaused = reduceMotion;
+    let hovering = false;
+    let visible = false;
+
+    function width() {
+      return track.clientWidth;
+    }
+
+    function setCurrent(index) {
+      current = index;
+      dotButtons.forEach((dot, i) => dot.setAttribute('aria-current', i === index ? 'true' : 'false'));
+    }
+
+    function goTo(index, fromUser) {
+      const target = (index + images.length) % images.length;
+      track.scrollTo({ left: target * width(), behavior: reduceMotion ? 'auto' : 'smooth' });
+      setCurrent(target);
+      if (fromUser) restart();
+    }
+
+    function shouldRun() {
+      return !userPaused && !hovering && visible && !document.hidden;
+    }
+
+    function stop() {
+      if (timer) clearInterval(timer);
+      timer = null;
+      track.setAttribute('aria-live', 'polite');
+    }
+
+    function start() {
+      stop();
+      if (!shouldRun()) return;
+      track.setAttribute('aria-live', 'off');
+      timer = setInterval(() => goTo(current + 1, false), SLIDE_MS);
+    }
+
+    function restart() {
+      if (timer) start();
+    }
+
+    function syncPauseButton() {
+      pause.dataset.paused = String(userPaused);
+      pause.setAttribute(
+        'aria-label',
+        userPaused ? 'Automatischen Bildwechsel starten' : 'Automatischen Bildwechsel pausieren'
+      );
+    }
+
+    prev.addEventListener('click', () => goTo(current - 1, true));
+    next.addEventListener('click', () => goTo(current + 1, true));
+    pause.addEventListener('click', () => {
+      userPaused = !userPaused;
+      syncPauseButton();
+      start();
+    });
+
+    let settleTimer = null;
+    track.addEventListener('scroll', () => {
+      clearTimeout(settleTimer);
+      settleTimer = setTimeout(() => {
+        const index = Math.round(track.scrollLeft / width());
+        if (index !== current && index >= 0 && index < images.length) setCurrent(index);
+      }, 100);
+    }, { passive: true });
+
+    wrap.addEventListener('mouseenter', () => { hovering = true; start(); });
+    wrap.addEventListener('mouseleave', () => { hovering = false; start(); });
+    wrap.addEventListener('focusin', () => { hovering = true; start(); });
+    wrap.addEventListener('focusout', () => { hovering = false; start(); });
+    wrap.addEventListener('touchstart', () => { userPaused = true; syncPauseButton(); start(); }, { passive: true });
+    document.addEventListener('visibilitychange', start);
+
+    new IntersectionObserver((entries) => {
+      visible = entries.some((entry) => entry.isIntersecting);
+      start();
+    }, { threshold: 0.4 }).observe(wrap);
+
+    setCurrent(0);
+    syncPauseButton();
+    return wrap;
+  }
+
+  function showMessage(text) {
+    grid.replaceChildren(el('p', 'gallery-empty', text));
+    grid.style.display = 'block';
+  }
+
+  try {
+    const res = await fetch('content/gallery.json', { cache: 'no-cache' });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const data = await res.json();
+    const items = Array.isArray(data.items) ? data.items : [];
+    const cards = [];
+
+    for (const item of items) {
+      const link = safeHttpsUrl(item.link);
+      const images = collectImages(item);
+      if (!link || !images.length || !item.title) {
+        console.warn('Galerie: Eintrag übersprungen (Link muss mit https:// beginnen, Bild muss aus dem eigenen Upload stammen):', item.title);
+        continue;
+      }
+
+      const card = el('article', 'gallery-card');
+      const body = el('div', 'gallery-body');
+      if (item.shop) body.appendChild(el('span', 'gallery-shop', item.shop));
+      body.appendChild(el('h3', 'gallery-title', item.title));
+      if (item.description) body.appendChild(el('p', 'gallery-desc', item.description));
+
+      const a = el('a', 'cta-cta-style-2', 'Ansehen auf Etsy');
+      a.href = link;
+      a.target = '_blank';
+      a.rel = 'noopener noreferrer';
+      body.appendChild(a);
+
+      card.append(buildSlider(item, images), body);
+      cards.push(card);
+    }
+
+    if (cards.length) {
+      grid.replaceChildren(...cards);
+    } else {
+      showMessage('Hier entstehen bald neue Designs. Schau gern bald wieder vorbei!');
+    }
+  } catch (e) {
+    console.warn('Galerie konnte nicht geladen werden:', e);
+    showMessage('Die Galerie konnte gerade nicht geladen werden. Bitte versuche es später noch einmal.');
+  }
+})();

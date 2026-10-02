@@ -1,0 +1,47 @@
+backend:
+  name: github
+  repo: DDDCoCloudy2905/dautonauten-website
+  branch: main
+  base_url: https://dautonauten-auth.dddcocloudy2905.workers.dev
+  auth_endpoint: auth
+
+media_folder: assets/gallery
+public_folder: /assets/gallery
+publish_mode: simple
+locale: de
+
+collections:
+  - name: galerie
+    label: Galerie
+    files:
+      - name: gallery
+        label: Galerie-Einträge
+        file: content/gallery.json
+        fields:
+          - label: Designs
+            name: items
+            widget: list
+            summary: "{{fields.title}}"
+            fields:
+              - { label: Titel, name: title, widget: string }
+              - { label: Titelbild, name: image, widget: image }
+              - { label: Beschreibung des Titelbilds (Alt-Text, optional – sonst wird der Titel verwendet), name: image_alt, widget: string, required: false }
+              - label: Weitere Bilder (optional)
+                name: more_images
+                widget: list
+                required: false
+                summary: "{{fields.alt}}"
+                fields:
+                  - { label: Bild, name: image, widget: image }
+                  - { label: Beschreibung (Alt-Text, optional), name: alt, widget: string, required: false }
+              - label: Shop
+                name: shop
+                widget: select
+                options:
+                  - Die Dautonauten Design
+                  - Outer Orbit Prints
+              - { label: Kurzbeschreibung, name: description, widget: text, required: false }
+              - label: Link zum Etsy-Listing
+                name: link
+                widget: string
+                pattern: ["^https://", "Der Link muss mit https:// beginnen"]

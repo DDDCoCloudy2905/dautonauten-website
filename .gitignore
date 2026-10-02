@@ -1,0 +1,6 @@
+.claude/
+Thumbs.db
+.DS_Store
+
+# Interne Dokumente nie veröffentlichen
+*.pdf
