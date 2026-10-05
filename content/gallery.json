@@ -8,7 +8,12 @@
       "link": "https://www.etsy.com/de/listing/4532087295/hand-drawn-seamless-pattern-heart-design",
       "more_images": [
         {
-          "image": "/assets/gallery/bestellvorgang-download-.jpg"
+          "image": "/assets/gallery/bestellvorgang-download-.jpg",
+          "alt": "Beschreibung des Downloadprozesses nach dem Kauf auf Etsy"
+        },
+        {
+          "image": "/assets/gallery/mockup-1.jpg",
+          "alt": "Mustervorschau auf einem Geschenkpapier"
         }
       ]
     }
