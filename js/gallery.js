@@ -70,7 +70,6 @@
 
     const prev = button('gallery-arrow gallery-prev', 'Vorheriges Bild', '‹');
     const next = button('gallery-arrow gallery-next', 'Nächstes Bild', '›');
-    const pause = button('gallery-pause', 'Automatischen Bildwechsel pausieren');
     const dots = el('div', 'gallery-dots');
     const dotButtons = images.map((_, index) => {
       const dot = button('gallery-dot', `Bild ${index + 1} anzeigen`);
@@ -78,13 +77,10 @@
       dots.appendChild(dot);
       return dot;
     });
-    wrap.append(prev, next, pause, dots);
+    wrap.append(prev, next, dots);
 
     let current = 0;
     let timer = null;
-    let userPaused = reduceMotion;
-    let hovering = false;
-    let visible = false;
 
     function width() {
       return track.clientWidth;
@@ -102,10 +98,6 @@
       if (fromUser) restart();
     }
 
-    function shouldRun() {
-      return !userPaused && !hovering && visible && !document.hidden;
-    }
-
     function stop() {
       if (timer) clearInterval(timer);
       timer = null;
@@ -114,7 +106,6 @@
 
     function start() {
       stop();
-      if (!shouldRun()) return;
       track.setAttribute('aria-live', 'off');
       timer = setInterval(() => goTo(current + 1, false), SLIDE_MS);
     }
@@ -123,21 +114,8 @@
       if (timer) start();
     }
 
-    function syncPauseButton() {
-      pause.dataset.paused = String(userPaused);
-      pause.setAttribute(
-        'aria-label',
-        userPaused ? 'Automatischen Bildwechsel starten' : 'Automatischen Bildwechsel pausieren'
-      );
-    }
-
     prev.addEventListener('click', () => goTo(current - 1, true));
     next.addEventListener('click', () => goTo(current + 1, true));
-    pause.addEventListener('click', () => {
-      userPaused = !userPaused;
-      syncPauseButton();
-      start();
-    });
 
     let settleTimer = null;
     track.addEventListener('scroll', () => {
@@ -148,20 +126,15 @@
       }, 100);
     }, { passive: true });
 
-    wrap.addEventListener('mouseenter', () => { hovering = true; start(); });
-    wrap.addEventListener('mouseleave', () => { hovering = false; start(); });
-    wrap.addEventListener('focusin', () => { hovering = true; start(); });
-    wrap.addEventListener('focusout', () => { hovering = false; start(); });
-    wrap.addEventListener('touchstart', () => { userPaused = true; syncPauseButton(); start(); }, { passive: true });
-    document.addEventListener('visibilitychange', start);
-
-    new IntersectionObserver((entries) => {
-      visible = entries.some((entry) => entry.isIntersecting);
-      start();
-    }, { threshold: 0.4 }).observe(wrap);
+    if (!reduceMotion) {
+      wrap.addEventListener('pointerenter', (event) => {
+        if (event.pointerType === 'mouse') start();
+      });
+      wrap.addEventListener('pointerleave', stop);
+      document.addEventListener('visibilitychange', () => { if (document.hidden) stop(); });
+    }
 
     setCurrent(0);
-    syncPauseButton();
     return wrap;
   }
 
