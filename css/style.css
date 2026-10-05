@@ -113,6 +113,32 @@ html { scroll-behavior: smooth; scroll-padding-top: calc(var(--header-h) - var(-
   left: calc(var(--cx) / var(--cw) * -100%);
   top: calc(var(--cy) / var(--ch) * -100%);
 }
+/* Hintergrundbilder liegen auf einer nicht anklickbaren Ebene hinter dem Inhalt.
+   So bietet der Browser dafür weder "Hintergrundbild anzeigen" noch "Bild öffnen" an. */
+.hero, .about, .offerings, .gallery, .gallery-teaser, .links, .legal-page {
+  position: relative;
+  isolation: isolate;
+}
+.hero::before, .about::before, .offerings::before, .gallery::before,
+.gallery-teaser::before, .links::before, .legal-page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.hero::before { background-image: url("../assets/backgrounds/bg-night.webp"); }
+.about::before, .gallery::before, .gallery-teaser::before, .legal-page::before { background-image: url("../assets/backgrounds/bg-mist.webp"); }
+.offerings::before { background-image: url("../assets/backgrounds/bg-lilac.webp"); }
+.links::before {
+  background-image:
+    linear-gradient(rgba(27, 27, 58, 0.55), rgba(27, 27, 58, 0.55)),
+    url("../assets/backgrounds/bg-violet.webp");
+}
+
 .crop-logo   { --cx: 426; --cy: 428; --cw: 1146; --ch: 1164; }
 .crop-comet  { --cx: 470; --cy: 200; --cw: 1110; --ch: 1670; }
 .crop-resting { --cx: 90; --cy: 450; --cw: 1752; --ch: 1106; }
@@ -277,7 +303,7 @@ h3 { font-size: clamp(1.6rem, 4vw, var(--type-h3-font-size)); }
    ============================================ */
 .hero {
   position: relative;
-  background: var(--color-midnight) url("../assets/backgrounds/bg-night.webp") center / cover no-repeat;
+  background-color: var(--color-midnight);
   color: var(--color-paper);
   padding: 7rem 1.5rem 6rem;
   overflow: hidden;
@@ -332,7 +358,7 @@ h3 { font-size: clamp(1.6rem, 4vw, var(--type-h3-font-size)); }
    About
    ============================================ */
 .about {
-  background: var(--color-paper) url("../assets/backgrounds/bg-mist.webp") center / cover no-repeat;
+  background-color: var(--color-paper);
 }
 .about .container {
   display: grid;
@@ -360,7 +386,7 @@ h3 { font-size: clamp(1.6rem, 4vw, var(--type-h3-font-size)); }
    Offerings
    ============================================ */
 .offerings {
-  background: var(--color-lilac) url("../assets/backgrounds/bg-lilac.webp") center / cover no-repeat;
+  background-color: var(--color-lilac);
 }
 .offerings .section-heading {
   text-align: center;
@@ -417,7 +443,7 @@ h3 { font-size: clamp(1.6rem, 4vw, var(--type-h3-font-size)); }
 /* ============================================
    Galerie
    ============================================ */
-.gallery { background: var(--color-paper) url("../assets/backgrounds/bg-mist.webp") center / cover no-repeat; }
+.gallery { background-color: var(--color-paper); }
 .gallery .section-heading {
   text-align: center;
   max-width: 640px;
@@ -542,7 +568,7 @@ h3 { font-size: clamp(1.6rem, 4vw, var(--type-h3-font-size)); }
 .gallery-body .cta-cta-style-2 { margin-top: auto; }
 
 .gallery-teaser {
-  background: var(--color-paper) url("../assets/backgrounds/bg-mist.webp") center / cover no-repeat;
+  background-color: var(--color-paper);
   text-align: center;
 }
 .gallery-teaser .container { max-width: 640px; }
@@ -552,9 +578,7 @@ h3 { font-size: clamp(1.6rem, 4vw, var(--type-h3-font-size)); }
    Links / Social
    ============================================ */
 .links {
-  background:
-    linear-gradient(rgba(27, 27, 58, 0.55), rgba(27, 27, 58, 0.55)),
-    var(--color-midnight) url("../assets/backgrounds/bg-violet.webp") center / cover no-repeat;
+  background-color: var(--color-midnight);
   color: var(--color-paper);
 }
 .links .section-heading {
@@ -648,7 +672,7 @@ h3 { font-size: clamp(1.6rem, 4vw, var(--type-h3-font-size)); }
    Impressum page
    ============================================ */
 .legal-page {
-  background: var(--color-paper) url("../assets/backgrounds/bg-mist.webp") center / cover no-repeat;
+  background-color: var(--color-paper);
   min-height: 60vh;
   padding: 8rem 1.5rem 5rem;
 }
