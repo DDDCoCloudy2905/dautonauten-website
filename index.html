@@ -8,6 +8,7 @@
 <meta name="description" content="Digitale Illustrationen, Cliparts, Seamless Patterns und Plotterdateien für Hobby-Kreative, DIY-Liebhaberinnen und kleine Kreativ-Unternehmen." />
 
 <link rel="stylesheet" href="css/style.css" />
+<noscript><link rel="stylesheet" href="css/nojs.css" /></noscript>
 <script src="js/content.js"></script>
 
 <!-- PLATZHALTER-FAVICON: ersetze durch dein echtes Favicon in assets/logos/ -->
@@ -20,7 +21,8 @@
     <a href="#" class="wordmark crop crop-logo">
       <img src="assets/logos/logo-primary.webp" alt="Die Dautonauten Design Co."/>
     </a>
-    <nav class="site-nav">
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menü öffnen"><span></span><span></span><span></span></button>
+    <nav class="site-nav" id="site-nav" aria-label="Hauptnavigation">
       <a href="#about">About Me</a>
       <a href="#angebot">Angebot</a>
       <a href="galerie.html">Galerie</a>
@@ -188,6 +190,7 @@
   </div>
 </footer>
 
+<script src="js/nav.js" defer></script>
 <script src="js/protect.js" defer></script>
 </body>
 </html>

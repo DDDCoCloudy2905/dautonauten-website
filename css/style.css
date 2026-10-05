@@ -302,6 +302,34 @@ h3 { font-size: clamp(1.6rem, 4vw, var(--type-h3-font-size)); }
   position: relative;
 }
 .site-nav a:hover { color: var(--color-indigo-deep); }
+.site-nav a[aria-current="page"] { color: var(--color-indigo-deep); }
+
+.nav-toggle {
+  display: none;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  border: 2px solid var(--color-lilac);
+  border-radius: 50%;
+  background: var(--color-paper);
+  cursor: pointer;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+.nav-toggle span {
+  display: block;
+  width: 1.2rem;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--color-midnight);
+  transition: transform 0.2s, opacity 0.2s;
+}
+.nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.nav-toggle:focus-visible { outline: 3px solid var(--color-indigo-deep); outline-offset: 2px; }
 
 /* ============================================
    Hero
@@ -782,7 +810,28 @@ h3 { font-size: clamp(1.6rem, 4vw, var(--type-h3-font-size)); }
 }
 @media (max-width: 640px) {
   .legal-card { padding: 1.25rem; }
-  .site-nav { display: none; }
+  .site-header .container { padding-left: 1.25rem; padding-right: 1.25rem; }
+  .nav-toggle { display: flex; }
+  .site-nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 0;
+    padding: 0.25rem 1.25rem 0.75rem;
+    background: var(--color-paper);
+    border-bottom: 1px solid rgba(27, 27, 58, 0.12);
+    box-shadow: 0 12px 24px rgba(27, 27, 58, 0.12);
+  }
+  .site-nav.is-open { display: flex; }
+  .site-nav a {
+    padding: 0.95rem 0;
+    font-size: 1.1rem;
+    border-bottom: 1px solid rgba(27, 27, 58, 0.08);
+  }
+  .site-nav a:last-child { border-bottom: 0; }
   :root { --section-pad: 3.5rem; }
   section { padding: var(--section-pad) 1.25rem; }
   .hero { padding: 6rem 1.25rem 4rem; }

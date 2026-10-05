@@ -1,0 +1,16 @@
+@media (max-width: 640px) {
+  .nav-toggle { display: none !important; }
+  .site-header .container { flex-wrap: wrap; row-gap: 0.25rem; }
+  .site-nav {
+    display: flex !important;
+    position: static !important;
+    flex-direction: row !important;
+    flex-wrap: wrap;
+    gap: 0.25rem 1.25rem !important;
+    padding: 0 0 0.5rem !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    background: transparent !important;
+  }
+  .site-nav a { padding: 0.25rem 0 !important; font-size: 1rem !important; border: 0 !important; }
+}
