@@ -9,11 +9,38 @@
   var root = document.documentElement;
   root.classList.add('texts-pending');
 
+  var hash = '';
+  try {
+    hash = decodeURIComponent(location.hash.slice(1));
+  } catch (e) {}
+  if (hash) root.style.scrollBehavior = 'auto';
+
+  var userScrolled = false;
+  ['wheel', 'touchstart', 'keydown'].forEach(function (name) {
+    window.addEventListener(name, function () { userScrolled = true; }, { once: true, passive: true });
+  });
+
+  // Die Texte machen die Seite teils länger. Danach zum Anker zurückspringen, solange noch nicht selbst gescrollt wurde.
+  function realign() {
+    if (!hash || userScrolled) return;
+    var target = document.getElementById(hash);
+    if (target) target.scrollIntoView();
+  }
+
   var revealed = false;
   function reveal() {
     if (revealed) return;
     revealed = true;
     root.classList.remove('texts-pending');
+    realign();
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(function () {
+        realign();
+        root.style.scrollBehavior = '';
+      });
+    } else {
+      root.style.scrollBehavior = '';
+    }
   }
   setTimeout(reveal, 2500);
 
