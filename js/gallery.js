@@ -138,6 +138,56 @@
     return wrap;
   }
 
+  const collator = new Intl.Collator('de', { sensitivity: 'base', numeric: true });
+
+  function dateValue(entry) {
+    const time = Date.parse(entry.item.published);
+    return Number.isNaN(time) ? null : time;
+  }
+
+  function byDate(direction) {
+    return (a, b) => {
+      const da = dateValue(a);
+      const db = dateValue(b);
+      if (da === null && db === null) return a.index - b.index;
+      if (da === null) return 1;
+      if (db === null) return -1;
+      return (da - db) * direction || a.index - b.index;
+    };
+  }
+
+  function byTitle(a, b) {
+    return collator.compare(a.item.title, b.item.title);
+  }
+
+  const sorters = {
+    standard: (a, b) => a.index - b.index,
+    newest: byDate(-1),
+    oldest: byDate(1),
+    'title-asc': byTitle,
+    'title-desc': (a, b) => byTitle(b, a),
+    shop: (a, b) => collator.compare(a.item.shop || '', b.item.shop || '') || byTitle(a, b)
+  };
+
+  function setupSorting(entries) {
+    const toolbar = document.getElementById('gallery-toolbar');
+    const select = document.getElementById('gallery-sort');
+
+    function render() {
+      const sorter = sorters[select ? select.value : 'standard'] || sorters.standard;
+      grid.replaceChildren(...entries.slice().sort(sorter).map((entry) => entry.card));
+    }
+
+    if (toolbar && select && entries.length > 1) {
+      if (!entries.some((entry) => dateValue(entry) !== null)) {
+        select.querySelectorAll('option[value="newest"], option[value="oldest"]').forEach((option) => option.remove());
+      }
+      toolbar.hidden = false;
+      select.addEventListener('change', render);
+    }
+    render();
+  }
+
   function showMessage(text) {
     grid.replaceChildren(el('p', 'gallery-empty', text));
     grid.style.display = 'block';
@@ -148,9 +198,9 @@
     if (!res.ok) throw new Error('HTTP ' + res.status);
     const data = await res.json();
     const items = Array.isArray(data.items) ? data.items : [];
-    const cards = [];
+    const entries = [];
 
-    for (const item of items) {
+    for (const [index, item] of items.entries()) {
       const link = safeHttpsUrl(item.link);
       const images = collectImages(item);
       if (!link || !images.length || !item.title) {
@@ -171,13 +221,13 @@
       body.appendChild(a);
 
       card.append(buildSlider(item, images), body);
-      cards.push(card);
+      entries.push({ item, card, index });
     }
 
-    if (cards.length) {
-      grid.replaceChildren(...cards);
-    } else {
+    if (!entries.length) {
       showMessage('Hier entstehen bald neue Designs. Schau gern bald wieder vorbei!');
+    } else {
+      setupSorting(entries);
     }
   } catch (e) {
     console.warn('Galerie konnte nicht geladen werden:', e);

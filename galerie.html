@@ -7,6 +7,7 @@
 <meta name="description" content="Ein Blick auf die Designs von Die Dautonauten Design Co. – mit direktem Link zum Etsy-Shop." />
 
 <link rel="stylesheet" href="css/style.css" />
+<script src="js/content.js"></script>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%231b1b3a'/%3E%3Ctext x='50' y='68' font-size='60' text-anchor='middle' fill='%23c9b8e8'%3E★%3C/text%3E%3C/svg%3E" />
 </head>
 <body>
@@ -29,9 +30,20 @@
   <section class="gallery gallery-page">
     <div class="container">
       <div class="section-heading">
-        <span class="eyebrow">Aus meinem Shop</span>
-        <h1>Galerie</h1>
-        <p class="text-body-lg">Ein Blick auf meine Designs – mit direktem Link zum Shop.</p>
+        <span class="eyebrow" data-text="gallery-page.eyebrow">Aus meinem Shop</span>
+        <h1 data-text="gallery-page.title">Galerie</h1>
+        <p class="text-body-lg" data-text="gallery-page.text">Ein Blick auf meine Designs – mit direktem Link zum Shop.</p>
+      </div>
+      <div class="gallery-toolbar" id="gallery-toolbar" hidden>
+        <label for="gallery-sort">Sortieren nach</label>
+        <select id="gallery-sort">
+          <option value="standard">Empfohlene Reihenfolge</option>
+          <option value="newest">Neueste zuerst</option>
+          <option value="oldest">Älteste zuerst</option>
+          <option value="title-asc">Titel A–Z</option>
+          <option value="title-desc">Titel Z–A</option>
+          <option value="shop">Shop A–Z</option>
+        </select>
       </div>
       <div class="gallery-grid" id="gallery-grid" aria-live="polite">
         <noscript><p class="gallery-empty">Bitte aktiviere JavaScript, um die Galerie zu sehen. Alle Designs findest du auch direkt in meinem <a href="https://diedautonautendesign.etsy.com">Etsy Shop</a>.</p></noscript>
@@ -42,13 +54,13 @@
 
 <footer class="site-footer">
   <div class="container">
-    <span class="footer-note">© 2026 Die Dautonauten Design Co. — Claudia Daut</span>
+    <span class="footer-note" data-text="footer.note">© 2026 Die Dautonauten Design Co. — Claudia Daut</span>
     <div class="footer-links">
       <a href="mailto:hello@diedautonautendesign.com">Kontakt</a>
       <a href="impressum.html">Impressum</a>
       <a href="datenschutz.html">Datenschutz</a>
     </div>
-    <p class="footer-copyright"><strong>Urheberrecht:</strong> Alle Inhalte dieser Website, insbesondere Designs, Illustrationen, Vorschaubilder, Maskottchen, Logos, Hintergründe und Texte, sind urheberrechtlich geschützt (© 2026 Claudia Daut, Die Dautonauten Design Co. – alle Rechte vorbehalten). Jede Vervielfältigung, Speicherung, Bearbeitung, Verbreitung oder öffentliche Wiedergabe, auch auszugsweise, bedarf meiner vorherigen schriftlichen Zustimmung. Die Nutzung erworbener Dateien richtet sich allein nach den Nutzungsbedingungen im jeweiligen Shop-Angebot. Bei Verstößen behalte ich mir rechtliche Schritte vor.</p>
+    <p class="footer-copyright"><strong data-text="footer.copyright_label">Urheberrecht:</strong> <span data-text="footer.copyright_text">Alle Inhalte dieser Website, insbesondere Designs, Illustrationen, Vorschaubilder, Maskottchen, Logos, Hintergründe und Texte, sind urheberrechtlich geschützt (© 2026 Claudia Daut, Die Dautonauten Design Co. – alle Rechte vorbehalten). Jede Vervielfältigung, Speicherung, Bearbeitung, Verbreitung oder öffentliche Wiedergabe, auch auszugsweise, bedarf meiner vorherigen schriftlichen Zustimmung. Die Nutzung erworbener Dateien richtet sich allein nach den Nutzungsbedingungen im jeweiligen Shop-Angebot. Bei Verstößen behalte ich mir rechtliche Schritte vor.</span></p>
   </div>
 </footer>
 

@@ -7,6 +7,7 @@
 <meta name="description" content="Digitale Illustrationen, Cliparts, Seamless Patterns und Plotterdateien für Hobby-Kreative, DIY-Liebhaberinnen und kleine Kreativ-Unternehmen." />
 
 <link rel="stylesheet" href="css/style.css" />
+<script src="js/content.js"></script>
 
 <!-- PLATZHALTER-FAVICON: ersetze durch dein echtes Favicon in assets/logos/ -->
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%231b1b3a'/%3E%3Ctext x='50' y='68' font-size='60' text-anchor='middle' fill='%23c9b8e8'%3E★%3C/text%3E%3C/svg%3E" />
@@ -33,15 +34,15 @@
   <section class="hero">
     <div class="container hero-grid">
       <div class="hero-copy">
-        <span class="tagline-script">Raum und Zeit für</span>
-        <h1>Kreativität</h1>
-        <p class="text-body-lg">
+        <span class="tagline-script" data-text="hero.tagline">Raum und Zeit für</span>
+        <h1 data-text="hero.title">Kreativität</h1>
+        <p class="text-body-lg" data-text="hero.text">
           Digitale Illustrationen, Cliparts und Patterns für Hobby-Kreative, DIY-Liebhaberinnen
           und kleine Kreativ-Unternehmen — mit viel Liebe zum Detail gestaltet.
         </p>
         <div class="button-row">
-          <a class="cta-cta-style-1" href="https://diedautonautendesign.etsy.com" target="_blank" rel="noopener">Zum Etsy Shop</a>
-          <a class="cta-cta-style-3" href="https://www.instagram.com/diedautonauten.design/" target="_blank" rel="noopener">Folg mir auf Instagram</a>
+          <a class="cta-cta-style-1" href="https://diedautonautendesign.etsy.com" data-href="hero.shop_url" data-text="hero.shop_button" target="_blank" rel="noopener">Zum Etsy Shop</a>
+          <a class="cta-cta-style-3" href="https://www.instagram.com/diedautonauten.design/" data-href="hero.instagram_url" data-text="hero.instagram_button" target="_blank" rel="noopener">Folg mir auf Instagram</a>
         </div>
       </div>
       <div class="hero-mascot">
@@ -56,20 +57,22 @@
   <section class="about" id="about">
     <div class="container">
       <div class="about-intro">
-        <span class="eyebrow">About Me</span>
-        <h2>Willkommen bei den Dautonauten!</h2>
+        <span class="eyebrow" data-text="about.eyebrow">About Me</span>
+        <h2 data-text="about.title">Willkommen bei den Dautonauten!</h2>
         <div class="about-mascot crop crop-resting">
           <img src="assets/logos/mascot-brush-rest.webp" alt="Der Dautonauten-Astronaut lehnt entspannt auf seinem Pinsel" />
         </div>
       </div>
       <div class="about-copy text-body-lg">
+        <div data-paragraphs="about.body">
         <p>Schon als Kind war ich begeistert von Stiften, Farben und Papier. Ich verbrachte oft Stunden damit zu zeichnen und meiner Fantasie freien Lauf zu lassen. In meiner Jugend half ich im Familienbetrieb bei der Vektorisierung von Firmenlogos für den Plotter und sammelte erste Erfahrungen im digitalen Gestalten. Eigentlich deutete alles auf eine kreative Zukunft hin.</p>
         <p>Doch wie so oft führte das Leben zunächst in eine andere Richtung. Beruf, Alltag und Verpflichtungen rückten die Kunst in den Hintergrund. Die Freude am Erschaffen neuer Dinge blieb jedoch immer erhalten und wartete nur auf den richtigen Zeitpunkt, wieder entdeckt zu werden.</p>
         <p>Heute, in meinem besten Mittelalter, habe ich zu meiner kreativen Leidenschaft zurückgefunden und freue mich darauf, meine Ideen mit euch zu teilen. Mein Shopname verbindet diese Welt mit meiner Familie und dem Astronauten – einem Symbol für Neugier, Entdeckergeist und die Freude daran, über den Tellerrand zu blicken und zu neuen Abenteuern aufzubrechen. Die Vorstellung, eigene Kleidung mit selbst entworfenen Stoffmustern zu nähen, motiviert mich aktuell am meisten.</p>
         <p>In meinem Shop findet ihr digitale Illustrationen, Cliparts, Seamless Patterns, Plotterdateien, Sublimationsdesigns, Print-on-Demand-Motive sowie weitere kreative Dateien und Templates für eure eigenen Projekte. Meine Designs richten sich an Hobby-Kreative, DIY-Liebhaber und kleine Kreativ-Unternehmen.</p>
         <p>Thematisch werdet ihr hier unter anderem niedliche Tiere, fantasievolle Figuren, florale Designs, saisonale Motive, humorvolle Illustrationen und vieles mehr entdecken. Jedes Design entsteht mit viel Liebe zum Detail und dem Wunsch, anderen Menschen Freude zu bereiten.</p>
         <p>Vielen Dank, dass ihr meinen Shop besucht. Ich freue mich darauf, euch auf dieser kreativen Reise mitzunehmen.</p>
-        <p class="signature">Claudia</p>
+        </div>
+        <p class="signature" data-text="about.signature">Claudia</p>
       </div>
     </div>
   </section>
@@ -78,10 +81,10 @@
   <section class="offerings" id="angebot">
     <div class="container">
       <div class="section-heading">
-        <span class="eyebrow">Was euch erwartet</span>
-        <h2>Kreative Dateien für eure Projekte</h2>
+        <span class="eyebrow" data-text="offers.eyebrow">Was euch erwartet</span>
+        <h2 data-text="offers.title">Kreative Dateien für eure Projekte</h2>
       </div>
-      <div class="offer-grid">
+      <div class="offer-grid" data-list="offers.items" data-list-render="offers">
         <div class="offer-card">
           <div class="icon">🎨</div>
           <h3>Digitale Illustrationen</h3>
@@ -113,7 +116,7 @@
           <p>Motive für eure eigenen POD-Produkte.</p>
         </div>
       </div>
-      <div class="theme-tags">
+      <div class="theme-tags" data-list="offers.tags" data-list-render="tags">
         <span>Niedliche Tiere</span>
         <span>Fantasievolle Figuren</span>
         <span>Florale Designs</span>
@@ -126,10 +129,10 @@
   <!-- GALERIE-TEASER (die Galerie selbst liegt auf galerie.html und lädt erst dort) -->
   <section class="gallery-teaser" id="galerie-teaser">
     <div class="container">
-      <span class="eyebrow">Aus meinem Shop</span>
-      <h2>Galerie</h2>
-      <p class="text-body-lg">Ein Blick auf meine Designs – mit direktem Link zum Shop.</p>
-      <a class="cta-cta-style-1" href="galerie.html">Zur Galerie</a>
+      <span class="eyebrow" data-text="teaser.eyebrow">Aus meinem Shop</span>
+      <h2 data-text="teaser.title">Galerie</h2>
+      <p class="text-body-lg" data-text="teaser.text">Ein Blick auf meine Designs – mit direktem Link zum Shop.</p>
+      <a class="cta-cta-style-1" href="galerie.html" data-text="teaser.button">Zur Galerie</a>
     </div>
   </section>
 
@@ -137,11 +140,11 @@
   <section class="links" id="links">
     <div class="container">
       <div class="section-heading">
-        <span class="eyebrow">Bleib in Verbindung</span>
-        <h2>Findet mich hier</h2>
-        <p class="section-sub text-body-lg">Shop-Neuheiten, Inspiration und Blicke hinter die Kulissen.</p>
+        <span class="eyebrow" data-text="links.eyebrow">Bleib in Verbindung</span>
+        <h2 data-text="links.title">Findet mich hier</h2>
+        <p class="section-sub text-body-lg" data-text="links.text">Shop-Neuheiten, Inspiration und Blicke hinter die Kulissen.</p>
       </div>
-      <div class="link-grid">
+      <div class="link-grid" data-list="links.cards" data-list-render="linkcards">
         <a class="link-card" href="https://diedautonautendesign.etsy.com" target="_blank" rel="noopener">
           <span class="platform">Etsy Shop</span>
           <span class="handle">Die Dautonauten Design</span>
@@ -174,13 +177,13 @@
 
 <footer class="site-footer">
   <div class="container">
-    <span class="footer-note">© 2026 Die Dautonauten Design Co. — Claudia Daut</span>
+    <span class="footer-note" data-text="footer.note">© 2026 Die Dautonauten Design Co. — Claudia Daut</span>
     <div class="footer-links">
       <a href="mailto:hello@diedautonautendesign.com">Kontakt</a>
       <a href="impressum.html">Impressum</a>
       <a href="datenschutz.html">Datenschutz</a>
     </div>
-    <p class="footer-copyright"><strong>Urheberrecht:</strong> Alle Inhalte dieser Website, insbesondere Designs, Illustrationen, Vorschaubilder, Maskottchen, Logos, Hintergründe und Texte, sind urheberrechtlich geschützt (© 2026 Claudia Daut, Die Dautonauten Design Co. – alle Rechte vorbehalten). Jede Vervielfältigung, Speicherung, Bearbeitung, Verbreitung oder öffentliche Wiedergabe, auch auszugsweise, bedarf meiner vorherigen schriftlichen Zustimmung. Die Nutzung erworbener Dateien richtet sich allein nach den Nutzungsbedingungen im jeweiligen Shop-Angebot. Bei Verstößen behalte ich mir rechtliche Schritte vor.</p>
+    <p class="footer-copyright"><strong data-text="footer.copyright_label">Urheberrecht:</strong> <span data-text="footer.copyright_text">Alle Inhalte dieser Website, insbesondere Designs, Illustrationen, Vorschaubilder, Maskottchen, Logos, Hintergründe und Texte, sind urheberrechtlich geschützt (© 2026 Claudia Daut, Die Dautonauten Design Co. – alle Rechte vorbehalten). Jede Vervielfältigung, Speicherung, Bearbeitung, Verbreitung oder öffentliche Wiedergabe, auch auszugsweise, bedarf meiner vorherigen schriftlichen Zustimmung. Die Nutzung erworbener Dateien richtet sich allein nach den Nutzungsbedingungen im jeweiligen Shop-Angebot. Bei Verstößen behalte ich mir rechtliche Schritte vor.</span></p>
   </div>
 </footer>
 

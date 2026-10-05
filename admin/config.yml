@@ -12,7 +12,7 @@ locale: de
 
 collections:
   - name: galerie
-    label: Galerie
+    label: Galerie pflegen
     files:
       - name: gallery
         label: Galerie-Einträge
@@ -25,15 +25,15 @@ collections:
             fields:
               - { label: Titel, name: title, widget: string }
               - { label: Titelbild, name: image, widget: image }
-              - { label: Beschreibung des Titelbilds (Alt-Text, optional – sonst wird der Titel verwendet), name: image_alt, widget: string, required: false }
-              - label: Weitere Bilder (optional)
+              - { label: Beschreibung des Titelbilds (Alt-Text; sonst wird der Titel verwendet), name: image_alt, widget: string, required: false }
+              - label: Weitere Bilder
                 name: more_images
                 widget: list
                 required: false
                 summary: "{{fields.alt}}"
                 fields:
                   - { label: Bild, name: image, widget: image }
-                  - { label: Beschreibung (Alt-Text, optional), name: alt, widget: string, required: false }
+                  - { label: Beschreibung (Alt-Text), name: alt, widget: string, required: false }
               - label: Shop
                 name: shop
                 widget: select
@@ -45,3 +45,97 @@ collections:
                 name: link
                 widget: string
                 pattern: ["^https://", "Der Link muss mit https:// beginnen"]
+              - label: Veröffentlicht am (für die Sortierung)
+                name: published
+                widget: datetime
+                format: "YYYY-MM-DD"
+                date_format: "DD.MM.YYYY"
+                time_format: false
+                picker_utc: true
+                required: false
+
+  - name: texte
+    label: Texte pflegen
+    files:
+      - name: hero
+        label: Startseite – Kopfbereich
+        file: content/texts/hero.json
+        fields:
+          - { label: Kleiner Schreibschrift-Text über der Überschrift, name: tagline, widget: string }
+          - { label: Große Überschrift, name: title, widget: string }
+          - { label: Einleitungstext, name: text, widget: text }
+          - { label: Beschriftung Knopf 1 (Etsy), name: shop_button, widget: string }
+          - { label: Link Knopf 1, name: shop_url, widget: string, pattern: ["^https://", "Der Link muss mit https:// beginnen"] }
+          - { label: Beschriftung Knopf 2 (Instagram), name: instagram_button, widget: string }
+          - { label: Link Knopf 2, name: instagram_url, widget: string, pattern: ["^https://", "Der Link muss mit https:// beginnen"] }
+
+      - name: about
+        label: Startseite – About Me
+        file: content/texts/about.json
+        fields:
+          - { label: Kleine Überschrift (Schreibschrift), name: eyebrow, widget: string }
+          - { label: Überschrift, name: title, widget: string }
+          - { label: Text, name: body, widget: text, hint: "Eine Leerzeile erzeugt einen neuen Absatz. Einfache Zeilenumbrüche bleiben erhalten." }
+          - { label: Unterschrift (leer lassen zum Ausblenden), name: signature, widget: string, required: false }
+
+      - name: offers
+        label: Startseite – Angebot
+        file: content/texts/offers.json
+        fields:
+          - { label: Kleine Überschrift (Schreibschrift), name: eyebrow, widget: string }
+          - { label: Überschrift, name: title, widget: string }
+          - label: Kacheln
+            name: items
+            widget: list
+            summary: "{{fields.icon}} {{fields.title}}"
+            fields:
+              - { label: Symbol (ein Emoji), name: icon, widget: string }
+              - { label: Titel, name: title, widget: string }
+              - { label: Text, name: text, widget: string }
+          - label: Themen-Stichworte
+            name: tags
+            widget: list
+            field: { label: Stichwort, name: tag, widget: string }
+
+      - name: teaser
+        label: Startseite – Hinweis auf die Galerie
+        file: content/texts/teaser.json
+        fields:
+          - { label: Kleine Überschrift (Schreibschrift), name: eyebrow, widget: string }
+          - { label: Überschrift, name: title, widget: string }
+          - { label: Text, name: text, widget: string }
+          - { label: Beschriftung des Knopfs, name: button, widget: string }
+
+      - name: links
+        label: Startseite – Links und Social Media
+        file: content/texts/links.json
+        fields:
+          - { label: Kleine Überschrift (Schreibschrift), name: eyebrow, widget: string }
+          - { label: Überschrift, name: title, widget: string }
+          - { label: Text, name: text, widget: string }
+          - label: Karten
+            name: cards
+            widget: list
+            summary: "{{fields.platform}} – {{fields.handle}}"
+            fields:
+              - { label: Plattform, name: platform, widget: string }
+              - { label: Name oder Profil, name: handle, widget: string }
+              - { label: Beschreibung, name: description, widget: string }
+              - { label: Beschriftung des Links, name: link_text, widget: string }
+              - { label: Link, name: url, widget: string, pattern: ["^https://", "Der Link muss mit https:// beginnen"] }
+
+      - name: gallery-page
+        label: Galerie-Seite – Überschrift
+        file: content/texts/gallery-page.json
+        fields:
+          - { label: Kleine Überschrift (Schreibschrift), name: eyebrow, widget: string }
+          - { label: Überschrift, name: title, widget: string }
+          - { label: Text, name: text, widget: string }
+
+      - name: footer
+        label: Fußzeile und Urheberrechtshinweis (alle Seiten)
+        file: content/texts/footer.json
+        fields:
+          - { label: Zeile mit Copyright, name: note, widget: string }
+          - { label: Fettgedruckter Beginn des Hinweises, name: copyright_label, widget: string }
+          - { label: Urheberrechtshinweis, name: copyright_text, widget: text, hint: "Rechtlicher Text. Änderungen am besten mit IT-Recht Kanzlei abstimmen." }

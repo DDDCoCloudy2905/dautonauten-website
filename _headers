@@ -9,16 +9,16 @@
   Cache-Control: no-store
 
 /impressum
-  Content-Security-Policy: default-src 'none'; script-src 'self' https://www.it-recht-kanzlei.de; connect-src https://itrk.legal; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'
+  Content-Security-Policy: default-src 'none'; script-src 'self' https://www.it-recht-kanzlei.de; connect-src 'self' https://itrk.legal; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'
 
 /impressum.html
-  Content-Security-Policy: default-src 'none'; script-src 'self' https://www.it-recht-kanzlei.de; connect-src https://itrk.legal; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'
+  Content-Security-Policy: default-src 'none'; script-src 'self' https://www.it-recht-kanzlei.de; connect-src 'self' https://itrk.legal; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'
 
 /datenschutz
-  Content-Security-Policy: default-src 'none'; script-src 'self' https://www.it-recht-kanzlei.de; connect-src https://itrk.legal; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.it-recht-kanzlei.de; font-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'
+  Content-Security-Policy: default-src 'none'; script-src 'self' https://www.it-recht-kanzlei.de; connect-src 'self' https://itrk.legal; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.it-recht-kanzlei.de; font-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'
 
 /datenschutz.html
-  Content-Security-Policy: default-src 'none'; script-src 'self' https://www.it-recht-kanzlei.de; connect-src https://itrk.legal; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.it-recht-kanzlei.de; font-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'
+  Content-Security-Policy: default-src 'none'; script-src 'self' https://www.it-recht-kanzlei.de; connect-src 'self' https://itrk.legal; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.it-recht-kanzlei.de; font-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'
 
 /galerie
   Content-Security-Policy: default-src 'none'; script-src 'self'; connect-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'
