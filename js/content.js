@@ -1,4 +1,11 @@
 (function () {
+  if (/\.workers\.dev$/.test(location.hostname)) {
+    var robots = document.createElement('meta');
+    robots.name = 'robots';
+    robots.content = 'noindex, nofollow, noarchive, noimageindex';
+    document.head.appendChild(robots);
+  }
+
   var root = document.documentElement;
   root.classList.add('texts-pending');
 

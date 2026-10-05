@@ -3,6 +3,13 @@
   X-Frame-Options: DENY
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=()
+  X-Robots-Tag: noai, noimageai
+  tdm-reservation: 1
+
+# Nur die Test-Adresse von Cloudflare: nicht in Suchmaschinen aufnehmen.
+# Die spätere eigene Domain ist davon nicht betroffen.
+https://dautonauten-website.dddcocloudy2905.workers.dev/*
+  X-Robots-Tag: noindex, nofollow, noarchive, noimageindex
 
 /admin/*
   X-Robots-Tag: noindex, nofollow
