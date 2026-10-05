@@ -3,9 +3,40 @@
   "title": "Findet mich hier",
   "text": "Shop-Neuheiten, Inspiration und Blicke hinter die Kulissen.",
   "cards": [
-    { "platform": "Etsy Shop", "handle": "Die Dautonauten Design", "description": "Digitale Illustrationen, Cliparts & Patterns.", "link_text": "Shop besuchen →", "url": "https://diedautonautendesign.etsy.com" },
-    { "platform": "Etsy Shop", "handle": "Outer Orbit Prints", "description": "Print-on-Demand-Motive & mehr.", "link_text": "Shop besuchen →", "url": "https://outerorbitprintsger.etsy.com" },
-    { "platform": "Instagram", "handle": "@diedautonauten.design", "description": "Neue Designs & Blicke hinter die Kulissen.", "link_text": "Folgen →", "url": "https://www.instagram.com/diedautonauten.design/" },
-    { "platform": "Pinterest", "handle": "diedautonautendesignco", "description": "Inspiration & Moodboards.", "link_text": "Folgen →", "url": "https://de.pinterest.com/diedautonautendesignco/" }
+    {
+      "platform": "Etsy Shop",
+      "handle": "Die Dautonauten Design",
+      "description": "Digitale Illustrationen, Cliparts & Patterns.",
+      "link_text": "Shop besuchen →",
+      "url": "https://diedautonautendesign.etsy.com"
+    },
+    {
+      "platform": "Etsy Shop",
+      "handle": "Outer Orbit Prints",
+      "description": "Print-on-Demand-Motive & mehr.",
+      "link_text": "Shop besuchen →",
+      "url": "https://outerorbitprintsger.etsy.com"
+    },
+    {
+      "platform": "Instagram",
+      "handle": "@diedautonauten.design",
+      "description": "Neue Designs & Blicke hinter die Kulissen.",
+      "link_text": "Folgen →",
+      "url": "https://www.instagram.com/diedautonauten.design/"
+    },
+    {
+      "platform": "Pinterest",
+      "handle": "diedautonautendesignco",
+      "description": "Inspiration & Moodboards.",
+      "link_text": "Folgen →",
+      "url": "https://de.pinterest.com/diedautonautendesignco/"
+    },
+    {
+      "platform": "Cara",
+      "link_text": "Folgen →",
+      "url": "https://cara.app/diedautonautendesign/all",
+      "description": "KI-freies Social Media für Kreative",
+      "handle": "diedautonautendesign"
+    }
   ]
 }
