@@ -2,18 +2,45 @@
   "eyebrow": "Was euch erwartet",
   "title": "Kreative Dateien für eure Projekte",
   "items": [
-    { "icon": "🎨", "title": "Digitale Illustrationen", "text": "Liebevoll gestaltete Motive für eure kreativen Vorhaben." },
-    { "icon": "✂️", "title": "Cliparts", "text": "Vielseitig einsetzbare Grafiken für Papeterie & Co." },
-    { "icon": "🌀", "title": "Seamless Patterns", "text": "Nahtlose Muster – perfekt für eigene Stoffdesigns." },
-    { "icon": "✒️", "title": "Plotterdateien", "text": "Fertig aufbereitet für euren Cutter." },
-    { "icon": "🔥", "title": "Sublimationsdesigns", "text": "Bunte Motive für den Sublimationsdruck." },
-    { "icon": "🛍️", "title": "Print-on-Demand", "text": "Motive für eure eigenen POD-Produkte." }
+    {
+      "icon": "🎨",
+      "title": "Digitale Illustrationen",
+      "text": "Liebevoll gestaltete Motive für eure kreativen Vorhaben."
+    },
+    {
+      "icon": "✂️",
+      "title": "Cliparts",
+      "text": "Vielseitig einsetzbare Grafiken für Papeterie & Co."
+    },
+    {
+      "icon": "🌀",
+      "title": "Seamless Patterns",
+      "text": "Nahtlose Muster – perfekt für eigene Stoffdesigns."
+    },
+    {
+      "icon": "✒️",
+      "title": "Plotterdateien",
+      "text": "Fertig aufbereitet für euren Cutter."
+    },
+    {
+      "icon": "🔥",
+      "title": "Sublimationsdesigns",
+      "text": "Bunte Motive für den Sublimationsdruck."
+    },
+    {
+      "icon": "🛍️",
+      "title": "Print-on-Demand",
+      "text": "Motive für eure eigenen POD-Produkte."
+    }
   ],
   "tags": [
     "Niedliche Tiere",
     "Fantasievolle Figuren",
     "Florale Designs",
     "Saisonale Motive",
-    "Humorvolle Illustrationen"
+    "Humorvolle Illustrationen",
+    "Geschenke basteln",
+    "Druckmotive und Vorlagen",
+    "Bildschirmhintergründe"
   ]
 }
