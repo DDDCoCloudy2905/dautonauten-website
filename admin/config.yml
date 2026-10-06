@@ -77,6 +77,36 @@ collections:
           - { label: Überschrift, name: title, widget: string }
           - { label: Text, name: body, widget: text, hint: "Eine Leerzeile erzeugt einen neuen Absatz. Einfache Zeilenumbrüche bleiben erhalten." }
           - { label: Unterschrift (leer lassen zum Ausblenden), name: signature, widget: string, required: false }
+          - label: Fotos unter dem About-Text
+            name: photos
+            widget: object
+            collapsed: true
+            hint: "Bis zu drei Fotos, z. B. von dir oder deinem Arbeitsprozess. Leere Plätze erscheinen nicht auf der Website."
+            fields:
+              - label: "Foto 1 (z. B. du selbst)"
+                name: photo_1
+                widget: object
+                collapsed: true
+                fields:
+                  - { label: Bild, name: image, widget: image, required: false, hint: "Hochformat (4:5) sieht am besten aus. Ohne Bild bleibt der Platz auf der Website unsichtbar." }
+                  - { label: Beschreibung des Fotos (Alt-Text für Screenreader), name: alt, widget: string, required: false }
+                  - { label: Bildunterschrift (wird unter dem Foto angezeigt), name: caption, widget: string, required: false }
+              - label: "Foto 2 (z. B. Arbeitsprozess)"
+                name: photo_2
+                widget: object
+                collapsed: true
+                fields:
+                  - { label: Bild, name: image, widget: image, required: false, hint: "Hochformat (4:5) sieht am besten aus. Ohne Bild bleibt der Platz auf der Website unsichtbar." }
+                  - { label: Beschreibung des Fotos (Alt-Text für Screenreader), name: alt, widget: string, required: false }
+                  - { label: Bildunterschrift (wird unter dem Foto angezeigt), name: caption, widget: string, required: false }
+              - label: "Foto 3 (frei wählbar)"
+                name: photo_3
+                widget: object
+                collapsed: true
+                fields:
+                  - { label: Bild, name: image, widget: image, required: false, hint: "Hochformat (4:5) sieht am besten aus. Ohne Bild bleibt der Platz auf der Website unsichtbar." }
+                  - { label: Beschreibung des Fotos (Alt-Text für Screenreader), name: alt, widget: string, required: false }
+                  - { label: Bildunterschrift (wird unter dem Foto angezeigt), name: caption, widget: string, required: false }
 
       - name: offers
         label: Startseite – Angebot
@@ -87,9 +117,9 @@ collections:
           - label: Kacheln
             name: items
             widget: list
-            summary: "{{fields.icon}} {{fields.title}}"
+            summary: "{{fields.title}}"
             fields:
-              - { label: Symbol (ein Emoji), name: icon, widget: string }
+              - { label: Bild (quadratisch, mind. 300 × 300 px), name: image, widget: image, required: false, hint: "Ohne Bild erscheint die Kachel nur mit Text." }
               - { label: Titel, name: title, widget: string }
               - { label: Text, name: text, widget: string }
           - label: Themen-Stichworte

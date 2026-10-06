@@ -73,6 +73,29 @@
     }
   }
 
+  function safeImage(value) {
+    return typeof value === 'string' && /^\/?assets\/[\w\-./ ]+$/.test(value) && value.indexOf('..') === -1
+      ? value.replace(/^\//, '')
+      : null;
+  }
+
+  function photoFigures(photos) {
+    if (!photos || typeof photos !== 'object') return [];
+    return Object.keys(photos).sort().map(function (key) {
+      var photo = photos[key] || {};
+      var src = safeImage(photo.image);
+      if (!src) return null;
+      var figure = node('figure', 'about-photo');
+      var img = document.createElement('img');
+      img.src = src;
+      img.alt = photo.alt || photo.caption || '';
+      img.loading = 'lazy';
+      figure.appendChild(img);
+      if (photo.caption) figure.appendChild(node('figcaption', null, photo.caption));
+      return figure;
+    }).filter(Boolean);
+  }
+
   function node(tag, className, text) {
     var n = document.createElement(tag);
     if (className) n.className = className;
@@ -95,7 +118,16 @@
     offers: function (items) {
       return items.map(function (item) {
         var card = node('div', 'offer-card');
-        card.appendChild(node('div', 'icon', item.icon));
+        var src = safeImage(item.image);
+        if (src) {
+          var holder = node('div', 'icon');
+          var img = document.createElement('img');
+          img.src = src;
+          img.alt = '';
+          img.loading = 'lazy';
+          holder.appendChild(img);
+          card.appendChild(holder);
+        }
         card.appendChild(node('h3', null, item.title));
         card.appendChild(node('p', null, item.text));
         return card;
@@ -158,6 +190,11 @@
         var render = renderers[el.getAttribute('data-list-render')];
         if (!render || !Array.isArray(value)) return;
         el.replaceChildren.apply(el, render(value));
+      }),
+      apply('[data-photos]', function (el, value) {
+        var figures = photoFigures(value);
+        el.replaceChildren.apply(el, figures);
+        el.hidden = figures.length === 0;
       })
     );
     Promise.all(jobs).then(reveal, reveal);

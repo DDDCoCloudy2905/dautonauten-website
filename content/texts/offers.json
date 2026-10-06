@@ -3,32 +3,32 @@
   "title": "Kreative Dateien für eure Projekte",
   "items": [
     {
-      "icon": "🎨",
+      "image": "/assets/tiles/illustrationen.svg",
       "title": "Digitale Illustrationen",
       "text": "Liebevoll gestaltete Motive für eure kreativen Vorhaben."
     },
     {
-      "icon": "✂️",
+      "image": "/assets/tiles/cliparts.svg",
       "title": "Cliparts",
       "text": "Vielseitig einsetzbare Grafiken für Papeterie & Co."
     },
     {
-      "icon": "🌀",
+      "image": "/assets/tiles/patterns.svg",
       "title": "Seamless Patterns",
       "text": "Nahtlose Muster – perfekt für eigene Stoffdesigns."
     },
     {
-      "icon": "✒️",
+      "image": "/assets/tiles/plotterdateien.svg",
       "title": "Plotterdateien",
       "text": "Fertig aufbereitet für euren Cutter."
     },
     {
-      "icon": "🔥",
+      "image": "/assets/tiles/sublimation.svg",
       "title": "Sublimationsdesigns",
       "text": "Bunte Motive für den Sublimationsdruck."
     },
     {
-      "icon": "🛍️",
+      "image": "/assets/tiles/print-on-demand.svg",
       "title": "Print-on-Demand",
       "text": "Motive für eure eigenen POD-Produkte."
     }

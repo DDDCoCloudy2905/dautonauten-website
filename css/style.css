@@ -399,6 +399,35 @@ h3 { font-size: clamp(1.6rem, 4vw, var(--type-h3-font-size)); }
   gap: 2rem;
 }
 .about-copy p { margin: 0 0 1.1rem; }
+.about-photos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+}
+.about-photos[hidden] { display: none; }
+.about-photo {
+  flex: 1 1 200px;
+  max-width: 320px;
+  margin: 0;
+}
+.about-photo img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 20px;
+  border: 1px solid rgba(27, 27, 58, 0.08);
+  box-shadow: 0 8px 24px rgba(27, 27, 58, 0.12);
+  background: var(--color-lilac);
+}
+.about-photo figcaption {
+  margin-top: 0.6rem;
+  font-size: var(--type-body-sm-font-size);
+  line-height: 1.5;
+  text-align: center;
+  color: var(--color-slate);
+}
 .signature {
   font-family: var(--type-h4-font-family);
   font-size: 1.8rem;
@@ -439,16 +468,20 @@ h3 { font-size: clamp(1.6rem, 4vw, var(--type-h3-font-size)); }
   box-shadow: 0 8px 24px rgba(27, 27, 58, 0.08);
 }
 .offer-card .icon {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
+  width: 84px;
+  height: 84px;
+  border-radius: 20px;
   background: var(--color-lilac);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  overflow: hidden;
   margin-bottom: 1rem;
-  font-size: 1.3rem;
 }
+.offer-card .icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.offer-card img,
+.about-photo img { pointer-events: none; }
 .offer-card h3 {
   font-family: var(--type-h6-font-family);
   font-size: 1.3rem;
