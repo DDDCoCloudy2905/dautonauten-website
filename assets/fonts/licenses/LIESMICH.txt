@@ -1,0 +1,15 @@
+Schriften dieser Website und ihre Lizenzen
+
+Unbounded
+  Copyright 2022 The Unbounded Project Authors (https://github.com/googlefonts/unbounded)
+  SIL Open Font License, Version 1.1 - siehe unbounded-OFL.txt
+
+Quicksand
+  Copyright 2011 The Quicksand Project Authors (https://github.com/andrew-paglinawan/QuicksandFamily)
+  SIL Open Font License, Version 1.1 - siehe quicksand-OFL.txt
+
+Satisfy
+  Copyright (c) 2011 by Font Diner, Inc. (Designer: Sideshow)
+  Apache License, Version 2.0 - siehe satisfy-Apache-2.0.txt
+
+Die Schriften werden unverändert (nur als WOFF2 für das Web umgewandelt) von der eigenen Domain ausgeliefert.
